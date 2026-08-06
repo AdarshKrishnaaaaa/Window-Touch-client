@@ -9,7 +9,7 @@ import {
   Paper,
   CircularProgress,
 } from "@mui/material";
-import axios from "axios";
+import api from "../../api/Api";
 
 const AdminMessagesList = () => {
   const [messages, setMessages] = useState([]);
@@ -21,7 +21,7 @@ const AdminMessagesList = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/contact");
+      const response = await api.get("/contact");
 
       setMessages(response.data.contacts);
     } catch (error) {
@@ -49,8 +49,12 @@ const AdminMessagesList = () => {
     >
       <Typography
         variant="h5"
-        sx={{ fontWeight: "bold", fontFamily: "Lobster, cursive",
-          ml:2, mb: 3 }}
+        sx={{
+          fontWeight: "bold",
+          fontFamily: "Lobster, cursive",
+          ml: 2,
+          mb: 3,
+        }}
       >
         User Messages
       </Typography>
@@ -76,7 +80,7 @@ const AdminMessagesList = () => {
                         alignItems: "center",
                       }}
                     >
-                      <Typography sx={{ fontWeight: "bold",mb:1 }}>
+                      <Typography sx={{ fontWeight: "bold", mb: 1 }}>
                         {msg.firstName} {msg.lastName}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
@@ -89,9 +93,10 @@ const AdminMessagesList = () => {
                       <Typography
                         variant="body2"
                         color="text.primary"
-                        sx={{ mb: .5 }}
+                        sx={{ mb: 0.5 }}
                       >
-                        <strong>Email: </strong><i>{msg.email}</i>
+                        <strong>Email: </strong>
+                        <i>{msg.email}</i>
                       </Typography>
                       <Typography
                         variant="body2"

@@ -4,6 +4,7 @@ import axios from "axios";
 import GradientButton from "../../GradientButton";
 import SuccessPopup from "../SuccessPopup";
 import CustomSnackbar from "../../CustomSnackbar";
+import api from "../../../api/Api";
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
@@ -45,10 +46,7 @@ const FeedbackForm = () => {
       return;
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/feedback",
-        formData,
-      );
+      const response = await api.post("/feedback", formData);
 
       setSuccessOpen(true);
 

@@ -1,14 +1,14 @@
 import { Box, Typography, Card, CardContent, Avatar } from "@mui/material";
 import { Star } from "@mui/icons-material";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "../../../api/Api";
 
 const Testimonials = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/feedback");
+      const response = api.get("/feedback");
 
       setFeedbacks(response.data.feedbacks);
     } catch (error) {

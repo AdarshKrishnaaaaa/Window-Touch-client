@@ -4,6 +4,7 @@ import { Box, Typography, TextField, MenuItem } from "@mui/material";
 import SuccessPopup from "../SuccessPopup";
 import CustomSnackbar from "../../CustomSnackbar";
 import GradientButton from "../../GradientButton";
+import api from "../../../api/Api";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +33,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/contact",
-        formData,
-      );
+      const response = await api.post("/contact", formData);
 
       setSuccessOpen(true);
 
@@ -65,7 +63,7 @@ const ContactForm = () => {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        width:"100%"
+        width: "100%",
       }}
     >
       <Typography

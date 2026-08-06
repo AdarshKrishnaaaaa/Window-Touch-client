@@ -16,8 +16,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import GradientButton from "./GradientButton";
+import api from "../api/Api";
 
 const Navbar = ({
   mode = "user", // "user" | "admin"
@@ -61,13 +61,7 @@ const Navbar = ({
     setLoggingOut(true);
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/admin/logout",
-        {},
-        {
-          withCredentials: true,
-        },
-      );
+      await await api.post("/admin/logout");
 
       await new Promise((resolve) => setTimeout(resolve, 1500));
 

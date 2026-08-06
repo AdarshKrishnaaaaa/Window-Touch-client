@@ -10,6 +10,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import axios from "axios";
+import api from "../../api/Api";
 
 const FeedbackList = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -21,9 +22,7 @@ const FeedbackList = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/feedback"
-      );
+      const response = await api.get("/feedback");
 
       setFeedbacks(response.data.feedbacks);
     } catch (error) {
@@ -34,8 +33,9 @@ const FeedbackList = () => {
   };
 
   // Latest 3 feedbacks
-  const latestFeedbacks = [...feedbacks]
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  const latestFeedbacks = [...feedbacks].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+  );
 
   return (
     <Paper
@@ -51,7 +51,7 @@ const FeedbackList = () => {
         variant="h5"
         sx={{
           fontWeight: "bold",
-          ml:2,
+          ml: 2,
           mb: 3,
           fontFamily: "Lobster, cursive",
         }}
@@ -70,9 +70,7 @@ const FeedbackList = () => {
           <CircularProgress />
         </Box>
       ) : latestFeedbacks.length === 0 ? (
-        <Typography align="center">
-          No feedback available.
-        </Typography>
+        <Typography align="center">No feedback available.</Typography>
       ) : (
         <List>
           {latestFeedbacks.map((fdk, index) => (
@@ -95,17 +93,11 @@ const FeedbackList = () => {
                         mb: 1,
                       }}
                     >
-                      <Typography
-                        variant="subtitle1"
-                        fontWeight="bold"
-                      >
+                      <Typography variant="subtitle1" fontWeight="bold">
                         {fdk.name}
                       </Typography>
 
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                      >
+                      <Typography variant="caption" color="text.secondary">
                         {new Date(fdk.createdAt).toLocaleString("en-IN", {
                           day: "2-digit",
                           month: "short",
@@ -119,17 +111,11 @@ const FeedbackList = () => {
                   }
                   secondary={
                     <Box>
-                      <Typography
-                        variant="body2"
-                        sx={{ mb: 0.5 }}
-                      >
+                      <Typography variant="body2" sx={{ mb: 0.5 }}>
                         <strong>Email:</strong> <i>{fdk.email}</i>
                       </Typography>
 
-                      <Typography
-                        variant="body2"
-                        sx={{ mb: 0.5 }}
-                      >
+                      <Typography variant="body2" sx={{ mb: 0.5 }}>
                         <strong>Comment:</strong> {fdk.comment}
                       </Typography>
 

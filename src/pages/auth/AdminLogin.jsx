@@ -17,6 +17,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CustomSnackbar from "../../components/CustomSnackbar";
 import GradientButton from "../../components/GradientButton";
+import api from "../../api/Api";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -46,13 +47,7 @@ const AdminLogin = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/admin/login",
-        form,
-        {
-          withCredentials: true,
-        },
-      );
+      const res = await api.post("/login", form);
 
       navigate("/admin/");
     } catch (err) {

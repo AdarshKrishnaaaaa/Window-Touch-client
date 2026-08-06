@@ -3,11 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import GradientButton from "../../GradientButton";
+import api from "../../../api/Api";
 
 const FeaturedSection = () => {
-
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const FeaturedSection = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/projects");
+      const response = await api.get("/projects");
 
       setProjects(response.data);
     } catch (error) {
@@ -95,7 +94,7 @@ const FeaturedSection = () => {
 
       {/* Slider */}
       <Slider {...settings}>
-        {projects.slice(0,4).map((project, index) => (
+        {projects.slice(0, 4).map((project, index) => (
           <Box key={index} sx={{ my: 3, px: 1 }}>
             <Box
               component="img"
