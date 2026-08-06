@@ -9,12 +9,11 @@ const Testimonials = () => {
   const fetchFeedbacks = async () => {
     try {
       const response = api.get("/feedback").then((response) => {
-        console.log(response.data.feedbacks);
+        // console.log(response.data.feedbacks);
         setFeedbacks(response.data.feedbacks);
       });
     } catch (error) {
       console.log(error.response);
-      console.log(error.response?.data);
     }
   };
 

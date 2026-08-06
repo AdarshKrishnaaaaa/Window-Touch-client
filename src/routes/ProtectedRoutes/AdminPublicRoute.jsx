@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../api/Api";
+import { Box, CircularProgress } from "@mui/material";
 
 const AdminPublicRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -14,13 +15,21 @@ const AdminPublicRoute = ({ children }) => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
 
-  return authenticated ? (
-    <Navigate to="/admin" replace />
-  ) : (
-    children
-  );
+  return authenticated ? <Navigate to="/admin" replace /> : children;
 };
 
 export default AdminPublicRoute;
