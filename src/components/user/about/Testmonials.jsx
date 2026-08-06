@@ -8,13 +8,13 @@ const Testimonials = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = api.get("/feedback");
-      console.log(response);
-      
-      setFeedbacks(response.data.feedbacks);
+      const response = api.get("/feedback").then((response) => {
+        console.log(response.data.feedbacks);
+        setFeedbacks(response.data.feedbacks);
+      });
     } catch (error) {
       console.log(error.response);
-  console.log(error.response?.data);
+      console.log(error.response?.data);
     }
   };
 

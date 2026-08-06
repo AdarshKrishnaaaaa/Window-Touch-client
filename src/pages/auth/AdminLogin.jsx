@@ -13,7 +13,6 @@ import {
   VisibilityOff,
   AdminPanelSettings,
 } from "@mui/icons-material";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CustomSnackbar from "../../components/CustomSnackbar";
 import GradientButton from "../../components/GradientButton";
