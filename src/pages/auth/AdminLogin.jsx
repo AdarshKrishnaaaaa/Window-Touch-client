@@ -47,7 +47,7 @@ const AdminLogin = () => {
     try {
       setLoading(true);
 
-      const res = await api.post("/login", form);
+      const res = await api.post("/admin/login", form);
 
       navigate("/admin/");
     } catch (err) {
