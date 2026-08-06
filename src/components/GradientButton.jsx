@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
 
-const GradientButton = ({ label, onClick, href }) => {
+const GradientButton = ({ label, onClick, href, type, width }) => {
   return (
     <Button
       variant="contained"
+      type={type}
       sx={{
+        width,
         background: "linear-gradient(to right, #3b82f6, #14b8a6)",
-        textTransform:'uppercase',
+        textTransform: "uppercase",
         fontWeight: 500,
         borderRadius: "1rem",
         px: { xs: 3, sm: 4 },

@@ -1,138 +1,242 @@
-import { Box, Typography, IconButton, Divider } from "@mui/material";
+import { Box, Typography, IconButton, Divider, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GradientButton from "./GradientButton";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
-const Footer = () => {
+const Footer = ({ mode = "user", navLinks = [] }) => {
   return (
     <Box
       component="footer"
       sx={{
-        bgcolor: "#1f2937", // dark navy
-        color: "white",
-        pt: 10,
-        pb: 3,
-        px: { xs: 3, md: 8 },
+        bgcolor: "#111827",
+        color: "#fff",
+        pt: { xs: 8, md: 10 },
+        pb: 4,
+        px: "9%",
       }}
     >
-      {/* Top Section */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          justifyContent: "space-between",
-          alignItems: { xs: "flex-start", md: "center" },
-          gap: 4,
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1fr 1fr",
+            lg: "2fr 1fr 1fr 1.5fr",
+          },
+          gap: 6,
         }}
       >
-        {/* Logo / Brand */}
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: "bold",
-            fontFamily: 'Lobster, cursive',
-            background: "linear-gradient(90deg, white, #14b8a6)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          WindowTouch
-        </Typography>
-
-        {/* Links */}
-        <Box sx={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+        {/* Brand */}
+        <Box>
           <Typography
-            component="a"
-            href="/services"
+            variant="h4"
             sx={{
-              color: "white",
-              textDecoration: "none",
-              "&:hover": { color: "#14b8a6" },
-              textTransform:'uppercase'
+              fontWeight: 700,
+              mb: 2,
+              font: "var(--font_2)",
             }}
           >
+           {mode === "user" ? "WindowTouch" : "Admin Dashboard"}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#cfcfcf",
+              lineHeight: 1.8,
+              maxWidth: 320,
+            }}
+          >
+            Transforming homes and commercial spaces with premium upholstery,
+            custom furniture, curtains, blinds, cushions, and interior fabric
+            solutions crafted with precision.
+          </Typography>
+        </Box>
+
+        {/* Quick Links */}
+        {mode === "user" && (
+          <Box>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Quick Links
+            </Typography>
+
+            <Stack spacing={1.5}>
+              {navLinks.map((item,index) => (
+                <Typography
+                  key={index}
+                  component="a"
+                  href={item.path}
+                  sx={{
+                    color: "#cfcfcf",
+                    textDecoration: "none",
+                    transition: ".3s",
+                    "&:hover": {
+                      color: "#D4AF37",
+                      pl: 1,
+                    },
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              ))}
+            </Stack>
+          </Box>
+        )}
+
+        {/* Services */}
+        <Box>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             Services
           </Typography>
-          <Typography
-            component="a"
-            href="/projects"
-            sx={{
-              color: "white",
-              textDecoration: "none",
-              "&:hover": { color: "#14b8a6" },
-              textTransform:'uppercase'
-            }}
-          >
-            Projects
-          </Typography>
-          <Typography
-            component="a"
-            href="/about"
-            sx={{
-              color: "white",
-              textDecoration: "none",
-              "&:hover": { color: "#14b8a6" },
-              textTransform:'uppercase'
-            }}
-          >
-            About Us
-          </Typography>
+
+          <Stack spacing={1.5}>
+            {[
+              "Sofa Upholstery",
+              "Curtains",
+              "Blinds",
+              "Custom Furniture",
+              "Furniture Repair",
+            ].map((item,index) => (
+              <Typography
+                key={index}
+                sx={{
+                  color: "#cfcfcf",
+                }}
+              >
+                {item}
+              </Typography>
+            ))}
+          </Stack>
         </Box>
 
-        {/* Contact Us Button */}
-        <GradientButton label="Get a Quote" href="/contact" />
+        {/* Contact */}
+          <Box>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Contact
+            </Typography>
+
+            <Stack spacing={2}>
+              <Box sx={{ display: "flex", gap: 1.5 }}>
+                <LocationOnOutlinedIcon fontSize="small" />
+                <Typography variant="body2" color="#cfcfcf">
+                  Kottayam, Kerala, India
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", gap: 1.5 }}>
+                <PhoneOutlinedIcon fontSize="small" />
+                <Typography variant="body2" color="#cfcfcf">
+                  +91 98765 43210
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", gap: 1.5 }}>
+                <EmailOutlinedIcon fontSize="small" />
+                <Typography variant="body2" color="#cfcfcf">
+                  info@windowtouch.com
+                </Typography>
+              </Box>
+
+              <Box sx={{ mt: 1 }}>
+                <IconButton
+                  sx={{
+                    color: "#fff",
+                    "&:hover": {
+                      color: "#D4AF37",
+                    },
+                  }}
+                >
+                  <FacebookIcon />
+                </IconButton>
+
+                <IconButton
+                  sx={{
+                    color: "#fff",
+                    "&:hover": {
+                      color: "#D4AF37",
+                    },
+                  }}
+                >
+                  <InstagramIcon />
+                </IconButton>
+
+                <IconButton
+                  sx={{
+                    color: "#fff",
+                    "&:hover": {
+                      color: "#D4AF37",
+                    },
+                  }}
+                >
+                  <LinkedInIcon />
+                </IconButton>
+              </Box>
+            </Stack>
+          </Box>
       </Box>
 
-      <Divider sx={{ my: 4, bgcolor: "rgba(255,255,255,0.2)" }} />
+      <Divider
+        sx={{
+          my: 5,
+          bgcolor: "rgba(255,255,255,.12)",
+        }}
+      />
 
-      {/* Bottom Section */}
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
           justifyContent: "space-between",
-          alignItems: { xs: "flex-start", md: "center" },
-          gap: 3,
+          alignItems: "center",
+          gap: 2,
         }}
       >
-        {/* Copyright */}
-        <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>
-          © {new Date().getFullYear()} WindowTouch Co. All rights reserved.
+        <Typography
+          variant="body2"
+          sx={{
+            color: "#aaa",
+          }}
+        >
+          © {new Date().getFullYear()}{" "}
+          {mode === "admin" ? "Admin Dashboard" : "WindowTouch Co."} All Rights
+          Reserved.
         </Typography>
 
-        {/* Social Icons */}
-        <Box sx={{ display: "flex", gap: 1 }}>
-          <IconButton
-            sx={{ color: "white", "&:hover": { color: "#14b8a6" } }}
-            href="https://facebook.com"
-            target="_blank"
+        <Stack direction="row" spacing={3}>
+          <Typography
+            component="a"
+            href="#"
+            sx={{
+              color: "#aaa",
+              textDecoration: "none",
+              "&:hover": {
+                color: "#D4AF37",
+              },
+            }}
           >
-            <FacebookIcon />
-          </IconButton>
-          <IconButton
-            sx={{ color: "white", "&:hover": { color: "#14b8a6" } }}
-            href="https://instagram.com"
-            target="_blank"
+            Privacy Policy
+          </Typography>
+
+          <Typography
+            component="a"
+            href="#"
+            sx={{
+              color: "#aaa",
+              textDecoration: "none",
+              "&:hover": {
+                color: "#D4AF37",
+              },
+            }}
           >
-            <InstagramIcon />
-          </IconButton>
-          <IconButton
-            sx={{ color: "white", "&:hover": { color: "#14b8a6" } }}
-            href="https://twitter.com"
-            target="_blank"
-          >
-            <TwitterIcon />
-          </IconButton>
-          <IconButton
-            sx={{ color: "white", "&:hover": { color: "#14b8a6" } }}
-            href="https://linkedin.com"
-            target="_blank"
-          >
-            <LinkedInIcon />
-          </IconButton>
-        </Box>
+            Terms & Conditions
+          </Typography>
+        </Stack>
       </Box>
     </Box>
   );
