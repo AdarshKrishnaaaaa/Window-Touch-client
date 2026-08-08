@@ -14,7 +14,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
         bgcolor: "#111827",
         color: "#fff",
         pt: { xs: 8, md: 10 },
-        pb: 4,
+        pb: 12,
         px: "9%",
       }}
     >
@@ -39,7 +39,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
               font: "var(--font_2)",
             }}
           >
-           {mode === "user" ? "WindowTouch" : "Admin Dashboard"}
+            {mode === "user" ? "WindowTouch" : "Admin Dashboard"}
           </Typography>
 
           <Typography
@@ -64,7 +64,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
             </Typography>
 
             <Stack spacing={1.5}>
-              {navLinks.map((item,index) => (
+              {navLinks.map((item, index) => (
                 <Typography
                   key={index}
                   component="a"
@@ -99,7 +99,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
               "Blinds",
               "Custom Furniture",
               "Furniture Repair",
-            ].map((item,index) => (
+            ].map((item, index) => (
               <Typography
                 key={index}
                 sx={{
@@ -113,69 +113,69 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
         </Box>
 
         {/* Contact */}
-          <Box>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Contact
-            </Typography>
+        <Box>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Contact
+          </Typography>
 
-            <Stack spacing={2}>
-              <Box sx={{ display: "flex", gap: 1.5 }}>
-                <LocationOnOutlinedIcon fontSize="small" />
-                <Typography variant="body2" color="#cfcfcf">
-                  Kottayam, Kerala, India
-                </Typography>
-              </Box>
+          <Stack spacing={2}>
+            <Box sx={{ display: "flex", gap: 1.5 }}>
+              <LocationOnOutlinedIcon fontSize="small" />
+              <Typography variant="body2" color="#cfcfcf">
+                Kottayam, Kerala, India
+              </Typography>
+            </Box>
 
-              <Box sx={{ display: "flex", gap: 1.5 }}>
-                <PhoneOutlinedIcon fontSize="small" />
-                <Typography variant="body2" color="#cfcfcf">
-                  +91 98765 43210
-                </Typography>
-              </Box>
+            <Box sx={{ display: "flex", gap: 1.5 }}>
+              <PhoneOutlinedIcon fontSize="small" />
+              <Typography variant="body2" color="#cfcfcf">
+                +91 98765 43210
+              </Typography>
+            </Box>
 
-              <Box sx={{ display: "flex", gap: 1.5 }}>
-                <EmailOutlinedIcon fontSize="small" />
-                <Typography variant="body2" color="#cfcfcf">
-                  info@windowtouch.com
-                </Typography>
-              </Box>
+            <Box sx={{ display: "flex", gap: 1.5 }}>
+              <EmailOutlinedIcon fontSize="small" />
+              <Typography variant="body2" color="#cfcfcf">
+                info@windowtouch.com
+              </Typography>
+            </Box>
 
-              <Box sx={{ mt: 1 }}>
-                <IconButton
-                  sx={{
-                    color: "#fff",
-                    "&:hover": {
-                      color: "#D4AF37",
-                    },
-                  }}
-                >
-                  <FacebookIcon />
-                </IconButton>
+            <Box sx={{ mt: 1 }}>
+              <IconButton
+                sx={{
+                  color: "#fff",
+                  "&:hover": {
+                    color: "#D4AF37",
+                  },
+                }}
+              >
+                <FacebookIcon />
+              </IconButton>
 
-                <IconButton
-                  sx={{
-                    color: "#fff",
-                    "&:hover": {
-                      color: "#D4AF37",
-                    },
-                  }}
-                >
-                  <InstagramIcon />
-                </IconButton>
+              <IconButton
+                sx={{
+                  color: "#fff",
+                  "&:hover": {
+                    color: "#D4AF37",
+                  },
+                }}
+              >
+                <InstagramIcon />
+              </IconButton>
 
-                <IconButton
-                  sx={{
-                    color: "#fff",
-                    "&:hover": {
-                      color: "#D4AF37",
-                    },
-                  }}
-                >
-                  <LinkedInIcon />
-                </IconButton>
-              </Box>
-            </Stack>
-          </Box>
+              <IconButton
+                sx={{
+                  color: "#fff",
+                  "&:hover": {
+                    color: "#D4AF37",
+                  },
+                }}
+              >
+                <LinkedInIcon />
+              </IconButton>
+            </Box>
+          </Stack>
+        </Box>
       </Box>
 
       <Divider
@@ -194,7 +194,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
           },
           justifyContent: "space-between",
           alignItems: "center",
-          gap: 2,
+          gap: 2,textAlign:"center"
         }}
       >
         <Typography
@@ -204,11 +204,12 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
           }}
         >
           © {new Date().getFullYear()}{" "}
-          {mode === "admin" ? "Admin Dashboard" : "WindowTouch Co."} All Rights
-          Reserved.
+          {mode === "admin"
+            ? "Admin Dashboard"
+            : "WindowTouch Co. All Rights Reserved."}
         </Typography>
 
-        <Stack direction="row" spacing={3}>
+        {/* <Stack direction="row" spacing={3}>
           <Typography
             component="a"
             href="#"
@@ -236,7 +237,7 @@ const Footer = ({ mode = "user", navLinks = [] }) => {
           >
             Terms & Conditions
           </Typography>
-        </Stack>
+        </Stack> */}
       </Box>
     </Box>
   );

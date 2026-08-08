@@ -12,6 +12,12 @@ import AdminLogin from "../pages/auth/AdminLogin";
 import AdminProtectedRoute from "./ProtectedRoutes/AdminProtectedRoute";
 import FeedbackList from "../components/admin/FeedbackList";
 import AdminPublicRoute from "./ProtectedRoutes/AdminPublicRoute";
+import {
+  Palette,
+  FolderKanban,
+  MessageSquare,
+  MessageCircle,
+} from "lucide-react";
 
 export default function AdminRoutes() {
   const location = useLocation();
@@ -24,10 +30,26 @@ export default function AdminRoutes() {
         <Navbar
           mode="admin"
           navLinks={[
-            { name: "Designs", path: "/admin/designs" },
-            { name: "Projects", path: "/admin/projects" },
-            { name: "Messages", path: "/admin/messages" },
-            { name: "Feedbacks", path: "/admin/feedback" },
+            {
+              name: "Designs",
+              path: "/admin/designs",
+              icon: <Palette size={20} />,
+            },
+            {
+              name: "Projects",
+              path: "/admin/projects",
+              icon: <FolderKanban size={20} />,
+            },
+            {
+              name: "Messages",
+              path: "/admin/messages",
+              icon: <MessageSquare size={20} />,
+            },
+            {
+              name: "Feedbacks",
+              path: "/admin/feedback",
+              icon: <MessageCircle size={20} />,
+            },
           ]}
           buttonLabel="Logout"
           logoDark={logoB}

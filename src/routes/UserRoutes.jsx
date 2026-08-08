@@ -9,6 +9,13 @@ import Contact from "../pages/user/Contact";
 import Design from "../pages/user/Design";
 import logoB from "../assets/logoB.png";
 import logoW from "../assets/logo.png";
+import {
+  House,
+  BriefcaseBusiness,
+  FolderKanban,
+  Palette,
+  Info,
+} from "lucide-react";
 
 export default function UserRoutes() {
   return (
@@ -16,11 +23,31 @@ export default function UserRoutes() {
       <Navbar
         mode="user"
         navLinks={[
-          { name: "Home", path: "/" },
-          // { name: "Services", path: "/services" },
-          { name: "Projects", path: "/projects" },
-          { name: "Designs", path: "/designs" },
-          { name: "About Us", path: "/about" },
+          {
+            name: "Home",
+            path: "/",
+            icon: <House size={20} />,
+          },
+          {
+            name: "Services",
+            path: "/services",
+            icon: <BriefcaseBusiness size={20} />,
+          },
+          {
+            name: "Projects",
+            path: "/projects",
+            icon: <FolderKanban size={20} />,
+          },
+          {
+            name: "Designs",
+            path: "/designs",
+            icon: <Palette size={20} />,
+          },
+          // {
+          //   name: "About Us",
+          //   path: "/about",
+          //   icon: <Info size={20} />,
+          // },
         ]}
         buttonLabel="Contact Us"
         buttonHref="/contact"

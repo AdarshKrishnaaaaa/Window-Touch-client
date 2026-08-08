@@ -3,21 +3,23 @@ import {
   AppBar,
   Toolbar,
   Box,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   Backdrop,
   CircularProgress,
-  Button,
+  BottomNavigation,
+  BottomNavigationAction,
+  Paper,
+  IconButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useNavigate } from "react-router-dom";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
+import { useLocation, useNavigate } from "react-router-dom";
 import GradientButton from "./GradientButton";
 import api from "../api/Api";
+import { Info, LogOut } from "lucide-react";
 
 const Navbar = ({
   mode = "user", // "user" | "admin"
@@ -32,9 +34,11 @@ const Navbar = ({
   const [lastScrollY, setLastScrollY] = useState(0);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  const toggleDrawer = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const location = useLocation();
+
+  const bottomNav = navLinks.findIndex(
+    (link) => link.path === location.pathname,
+  );
 
   const navigate = useNavigate();
 
@@ -168,115 +172,80 @@ const Navbar = ({
               },
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <MenuIcon className="text-black" />
+            <IconButton href={buttonHref} onClick={handleLogout}>
+              {mode === "user" ? (
+                <Info className="text-black" />
+              ) : (
+                <LogOut className="text-black" />
+              )}
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
 
       {/* Mobile Drawer */}
-      <Drawer
-        anchor="left"
-        open={mobileOpen}
-        onClose={toggleDrawer}
-        PaperProps={{
-          sx: {
-            width: 250,
-            background: "transparent",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            color: "#fff",
-            borderRight: "1px solid rgba(255,255,255,0.08)",
-          },
+      <Paper
+        elevation={0}
+        sx={{
+          display: { xs: "block", md: "none" },
+
+          position: "fixed",
+          bottom: 10,
+          left: 10,
+          right: 10,
+          zIndex: 1200,
+
+          borderRadius: 4,
+
+          background: "#fff",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.25)",
+
+          pb: "env(safe-area-inset-bottom)",
         }}
       >
-        <Box
+        <BottomNavigation
+          value={bottomNav === -1 ? 0 : bottomNav}
+          onChange={(event, newValue) => {
+            navigate(navLinks[newValue].path);
+          }}
           sx={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            p: 3,
+            height: 68,
+            background: "transparent",
+
+            "& .MuiBottomNavigationAction-root": {
+              minWidth: 0,
+              maxWidth: "none",
+              color: "#111827",
+              transition: "all .25s ease",
+            },
+
+            "& .MuiBottomNavigationAction-root.Mui-selected": {
+              color: "#111827",
+            },
+
+            "& .MuiBottomNavigationAction-root.Mui-selected svg": {
+              transform: "scale(1.1)",
+            },
+
+            "& .MuiBottomNavigationAction-label": {
+              fontSize: "0.7rem",
+              marginTop: "3px",
+            },
           }}
         >
-          {/* Header */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              mb: 5,
-            }}
-          >
-            <img
-              src={logoLight}
-              alt="Logo"
-              style={{
-                height: 55,
-                width: "auto",
-              }}
+          {navLinks.map((link) => (
+            <BottomNavigationAction
+              key={link.name}
+              label={link.name}
+              icon={link.icon}
             />
-
-            <IconButton onClick={toggleDrawer} sx={{ color: "#fff" }}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          {/* Navigation */}
-          <List sx={{ p: 0, flexGrow: 1 }}>
-            {navLinks.map((link) => (
-              <ListItem key={link.name} disablePadding sx={{ mb: 1.5 }}>
-                <Button
-                  fullWidth
-                  onClick={() => {
-                    navigate(link.path);
-                    toggleDrawer();
-                  }}
-                  endIcon={<ChevronRightIcon />}
-                  sx={{
-                    justifyContent: "space-between",
-                    color: "#fff",
-                    py: 1.6,
-                    px: 2,
-                    borderRadius: 3,
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    fontWeight: 500,
-                    backgroundColor: "rgba(255,255,255,0.04)",
-
-                    "&:hover": {
-                      background: "linear-gradient(90deg,#2563eb,#14b8a6)",
-                    },
-                  }}
-                >
-                  {link.name}
-                </Button>
-              </ListItem>
-            ))}
-          </List>
-
-          {/* Bottom Button */}
-          {buttonLabel && (
-            <GradientButton
-              label={buttonLabel}
-              href={buttonHref}
-              onClick={handleLogout}
-            />
-          )}
-
-          {/* Footer */}
-          <Box
-            sx={{
-              mt: 4,
-              textAlign: "center",
-              color: "rgba(255,255,255,.6)",
-              fontSize: ".85rem",
-            }}
-          >
-            © {new Date().getFullYear()} WindowTouch
-          </Box>
-        </Box>
-      </Drawer>
+          ))}
+        </BottomNavigation>
+      </Paper>
     </>
   );
 };
