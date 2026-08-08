@@ -192,8 +192,8 @@ const Navbar = ({
 
           position: "fixed",
           bottom: 10,
-          left: 10,
-          right: 10,
+          left: 12,
+          right: 12,
           zIndex: 1200,
 
           borderRadius: 4,
