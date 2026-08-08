@@ -11,6 +11,7 @@ import {
   IconButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CallIcon from '@mui/icons-material/Call';
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
@@ -19,7 +20,7 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { useLocation, useNavigate } from "react-router-dom";
 import GradientButton from "./GradientButton";
 import api from "../api/Api";
-import { Info, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 const Navbar = ({
   mode = "user", // "user" | "admin"
@@ -174,7 +175,7 @@ const Navbar = ({
           >
             <IconButton href={buttonHref} onClick={handleLogout}>
               {mode === "user" ? (
-                <Info className="text-black" />
+                <CallIcon className="text-black" />
               ) : (
                 <LogOut className="text-black" />
               )}

@@ -16,6 +16,7 @@ import {
   Palette,
   Info,
 } from "lucide-react";
+import CallIcon from '@mui/icons-material/Call';
 
 export default function UserRoutes() {
   return (
@@ -28,11 +29,11 @@ export default function UserRoutes() {
             path: "/",
             icon: <House size={20} />,
           },
-          {
-            name: "Services",
-            path: "/services",
-            icon: <BriefcaseBusiness size={20} />,
-          },
+          // {
+          //   name: "Services",
+          //   path: "/services",
+          //   icon: <BriefcaseBusiness size={20} />,
+          // },
           {
             name: "Projects",
             path: "/projects",
@@ -43,11 +44,11 @@ export default function UserRoutes() {
             path: "/designs",
             icon: <Palette size={20} />,
           },
-          // {
-          //   name: "About Us",
-          //   path: "/about",
-          //   icon: <Info size={20} />,
-          // },
+          {
+            name: "About",
+            path: "/about",
+            icon: <Info size={20} />,
+          },
         ]}
         buttonLabel="Contact Us"
         buttonHref="/contact"
